@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private Vector2 moveInput;
 
+    private Animator playerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,5 +35,16 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         weaponsArm.rotation = Quaternion.Euler(0, 0, angle);
+
+        if (mousePosition.x < screenPoint.x)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+            weaponsArm.localScale = new Vector3(-1f, -1f, 1f);
+        } 
+        else 
+        {
+            transform.localScale = Vector3.one;
+            weaponsArm.localScale = Vector3.one;
+        }
     }
 }
