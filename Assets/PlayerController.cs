@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
-        Debug.log(moveInput.x)
+        moveInput.y = Input.GetAxisRaw("Vertical");
+
+        transform.position += new Vector3(moveInput.x, moveInput.y, 0f) * Time.deltaTime * moveSpeed;
+//        Debug.log(moveInput);
     }
 }
